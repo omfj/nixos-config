@@ -27,6 +27,8 @@
     };
   };
 
+  networking.hostName = "nixomfj";            # Hostname
+
   hardware.sane = {                           # Used for scanning with Xsane
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
@@ -45,7 +47,6 @@
 
   services = {
     tlp.enable = true;                      # TLP and auto-cpufreq for power management
-    #logind.lidSwitch = "ignore";            # Laptop does not go to sleep when lid is closed
     auto-cpufreq.enable = true;
     blueman.enable = true;
     printing = {                            # Printing and drivers for TS5300
@@ -60,17 +61,6 @@
         addresses = true;
         userServices = true;
       };
-    };
-    samba = {
-      enable = true;
-      shares = {
-        share = {
-          "path" = "/home/${user}";
-          "guest ok" = "no";
-          "read only" = "no";
-        };
-      };
-      openFirewall = true;
     };
     xserver = {
       layout = "no";

@@ -23,9 +23,9 @@
         # Spaceship
         source ${pkgs.spaceship-prompt}/share/zsh/site-functions/prompt_spaceship_setup
         autoload -U promptinit; promptinit
-#       source $HOME/.config/shell/shell_init
+        #source $HOME/.config/shell/shell_init
         # Hook direnv
-#       emulate zsh -c "$(direnv hook zsh)"
+        #emulate zsh -c "$(direnv hook zsh)"
         # Swag
         pfetch                                  # Show fetch logo on terminal start
       '';
