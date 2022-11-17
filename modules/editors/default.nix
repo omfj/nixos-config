@@ -1,0 +1,8 @@
+#
+#  Editors
+#
+
+[
+  ./nvim
+  ./emacs
+]
