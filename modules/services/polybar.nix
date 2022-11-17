@@ -10,7 +10,7 @@ let
     pulseSupport = true;
   };
 in
-{ 
+{
   config = lib.mkIf (config.xsession.enable) {    # Only evaluate code if using X11
     services = {
       polybar = {
@@ -321,7 +321,6 @@ in
             menu-2-1 = "";
             menu-2-1-exec = "firefox &";
             menu-2-2 = "";
-            menu-2-2-exec = "emacs &";
             #menu-2-3 = "";
             #menu-2-3-exec = "libreoffice &";
             menu-2-3 = "";
@@ -402,7 +401,7 @@ in
       '';
       executable = true;
     };
-  };  
+  };
 }
 
 

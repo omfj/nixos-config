@@ -49,7 +49,6 @@
       # General home-manager
       alacritty        # Terminal Emulator
       dunst            # Notifications
-      doom emacs       # Text Editor
       libnotify        # Dep for Dunst
       neovim           # Text Editor
       rofi             # Menu

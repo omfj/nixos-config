@@ -2,7 +2,7 @@
 # Hosts
 #
 
-{ lib, inputs, nixpkgs, home-manager, nur, user, location, doom-emacs, ... }:
+{ lib, inputs, nixpkgs, home-manager, nur, user, location, ... }:
 
 let
   system = "x86_64-linux";
@@ -19,7 +19,6 @@ in
     inherit system;
     specialArgs = { inherit inputs user location; };
     modules = [
-      bspwm.nixosModules.default
       ./laptop
       ./configuration.nix
 
