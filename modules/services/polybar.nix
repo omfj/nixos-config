@@ -5,73 +5,49 @@
 { config, lib, pkgs, ... }:
 
 let
-  mypolybar = pkgs.polybar.override {             # Extra packages to run polybar (mostly sound atm)
+  mypolybar = pkgs.polybar.override {
     alsaSupport = true;
     pulseSupport = true;
   };
 in
 {
-  config = lib.mkIf (config.xsession.enable) {    # Only evaluate code if using X11
+  config = lib.mkIf (config.xsession.enable) {
     services = {
       polybar = {
         enable = true;
-        script = ''                               # Running polybar on startup
+        script = ''
           #  Handled by bspwmrc (modules/desktop/bspwm)
-        '';                                       # Gets fixed in the bspwmrc file
+        '';
         package = mypolybar;
         config = {
-          "bar/main" = {                          # Bar name = Top
-            #monitor = "HDMI-A-1";
-            monitor = "HDMI3";
+          "bar/main" = {
             width = "100%";
-            height = 15;
-            background = "#00000000";
-            foreground = "#ccffffff";
+            height = 30;
+            fixed-center = true;
 
-            offset-y = 2;
-            #spacing = "1.5";
-            padding-right = 2;
+            enable-ipc = true;
+
+            background = "#111";
+            foreground = "#eee";
+
+            border-size = 3;
+            border-color = "#111";
 
             module-margin-left = 1;
-            #module-margin-right = "0.5";
+            module-margin-right = 1;
 
-            font-0 = "SourceCodePro:size=10";     # Icons
-            font-1 = "FontAwesome6Free:style=Solid:size=8";
-            font-2 = "FontAwesome6Free:style=Regular:size=8";
-            font-3 = "FontAwesome6Brands:style=Regular:size=8";
-            font-4 = "FiraCodeNerdFont:size=10";
-            modules-left = "logo bspwm";
-            modules-right = "backlight pad memory cpu pad mic sink volume pad battery date"; #wired-network wireless-network bluetooth";
+            font-0 = "SourceCodePro:size=12";
+            font-1 = "FontAwesome6Free:style=Solid:size=10";
+            font-2 = "FontAwesome6Free:style=Regular:size=10";
+            font-3 = "FontAwesome6Brands:style=Regular:size=10";
+            font-4 = "FiraCodeNerdFont:size=12";
+
+            modules-left = "bspwm";
+            modules-right = "backlight pad memory cpu pad mic sink volume pad battery date";
 
             tray-position = "right";
             tray-detached = "false";
 
-            #override-redirect = "true";
-            wm-restack = "bspwm";
-          };
-          "bar/sec" = {
-            #monitor = "DisplayPort-1";
-            monitor = "DP1";
-            width = "100%";
-            height = 15;
-            background = "#00000000";
-            foreground = "#ccffffff";
-
-            offset-y = 2;
-            spacing = "1.5";
-            padding-right = 2;
-            module-margin-left = 1;
-            #module-margin-right = "0.5";
-
-            font-0 = "SourceCodePro:size=10";     # Icons
-            font-1 = "FontAwesome6Free:style=Solid:size=8";
-            font-2 = "FontAwesome6Free:style=Regular:size=8";
-            font-3 = "FontAwesome6Brands:style=Regular:size=8";
-            font-4 = "FiraCodeNerdFont:size=10";
-            modules-left = "logo bspwm";
-            modules-right = "mic sink volume pad date";
-
-            #override-redirect = "true";
             wm-restack = "bspwm";
           };
           "module/memory" = {                     # RAM
@@ -122,35 +98,6 @@ in
             bar-empty-font = 3;
             bar-empty-foreground = "#44";
           };
-          #"module/wireless-network" = {           # Show either wired or wireless
-            #type = "internal/network";
-            #interface = "wlo1";
-            #interval = "3.0";
-            #ping-interval = 10;
-            #
-            #format-connected = "<ramp-signal>";
-            #format-connected = "<ramp-signal> <label-connected>";
-            #label-connected = "%essid%";
-            #label-disconnected = "";
-            #label-disconnected-foreground = "#66";
-            #
-            #ramp-signal-0 = "";
-            #
-            #animation-packetloss-0 = "";
-            #animation-packetloss-0-foreground = "#ffa64c";
-            #animation-packetloss-1 = "";
-            #animation-packetloss-1-foreground = "#00000000";
-            #animation-packetloss-framerate = 500;
-          #};
-          #"module/wired-network" = {              # Ditto module above
-            #type = "internal/network";
-            #interface = "enp0s25";
-            #interval = "3.0";
-            #
-            #label-connected = "  %{T3}%local_ip%%{T-}";
-            #label-connected = "";
-            #label-disconnected-foreground = "#66";
-          #};
           "module/battery" = {                    # Show battery (only when exist), uncomment to show battery and animations
             type = "internal/battery";
             full-at = 98;
@@ -197,36 +144,19 @@ in
             pin-workspace = true;
             #label-monitor = "%name%";
 
-            ws-icon-0 = "1;";                    # Needs to be the same amount and same name as bswmrc
-            ws-icon-1 = "2;";
-            ws-icon-2 = "3;";
-            ws-icon-3 = "4;";
-            ws-icon-4 = "5;";
-            ws-icon-5 = "6;";
-            ws-icon-6 = "7;";
-            ws-icon-7 = "8;";
-            ws-icon-8 = "9;";
-            ws-icon-9 = "10;";
-            #ws-icon-default = "";               # Can have more workspaces availabe but enable default icon
-
             format = "<label-state> <label-mode>";
 
-            label-dimmed-underline = "#ccffffff"; # Colors in use, active or inactive
-
-            label-focused = "%icon%";
             label-focused-foreground = "#fff";
             label-focused-background = "#773f3f3f";
             label-focused-underline = "#c9665e";
             label-focused-font = 4;
             label-focused-padding = 2;
 
-            label-occupied = "%icon%";
             label-occupied-foreground = "#ddd";
             label-occupied-underline = "#666";
             label-occupied-font = 4;
             label-occupied-padding = 2;
 
-            label-urgent = "%icon%";
             label-urgent-foreground = "#000000";
             label-urgent-background = "#bd2c40";
             label-urgent-underline = "#9b0a20";
@@ -237,28 +167,8 @@ in
             label-empty-foreground = "#55";
             label-empty-font = 4;
             label-empty-padding = 2;
-
-            label-monocle = "M";
-            label-monocle-underline = "#c9665e";
-            label-monocle-background = "#33ffffff";
-            label-monocle-padding = 2;
-
-            label-locked = "L";
-            label-locked-foreground = "#bd2c40";
-            label-locked-underline = "#c9665e";
-            label-locked-padding = 2;
-
-            label-sticky = "S";
-            label-sticky-foreground = "#fba922";
-            label-sticky-underline = "#c9665e";
-            label-sticky-padding = 2;
-
-            label-private = "P";
-            label-private-foreground = "#bd2c40";
-            label-private-underline = "#c9665e";
-            label-private-padding = 2;
           };
-          "module/title" = {                      # Show title of active screen
+          "module/title" = {
             type = "internal/xwindow";
             format = "<label>";
             format-background = "#00000000";
@@ -269,7 +179,7 @@ in
             label-empty-foreground = "#ccffffff";
           };
 
-            # CUSTOM
+          # CUSTOM
           "module/pad" = {
             type = "custom/text";
             content = "    ";
@@ -279,7 +189,6 @@ in
             interval = 1;
             tail = "true";
             exec = "~/.config/polybar/script/mic.sh status";
-            #click-left = "pactl list sources | grep -qi 'Mute: yes' && pactl set-source-mute 1 false || pactl set-source-mute 1 true ";
             click-left = "~/.config/polybar/script/mic.sh toggle";
           };
           "module/sink" = {
@@ -316,25 +225,13 @@ in
 
             menu-2-0 = "";
             menu-2-0-exec = "alacritty &";
-            #menu-2-1 = "";
-            #menu-2-1-exec = "google-chrome-stable &";
             menu-2-1 = "";
             menu-2-1-exec = "firefox &";
             menu-2-2 = "";
-            #menu-2-3 = "";
-            #menu-2-3-exec = "libreoffice &";
             menu-2-3 = "";
             menu-2-3-exec = "plexmediaplayer &";
-            #menu-2-5 = "";
-            #menu-2-5-exec = "darktable &";
             menu-2-4 = "";
             menu-2-4-exec = "flatpak run com.obsproject.Studio &";
-            #menu-2-7 = "";
-            #menu-2-7-exec = "gimp &";
-            #menu-2-8 = "";
-            #menu-2-8-exec = "inkscape &";
-            #menu-2-9 = "";
-            #menu-2-9-exec = "kdenlive &";
             menu-2-5 = "";
             menu-2-5-exec = "lutris &";
             menu-2-6 = "";

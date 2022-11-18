@@ -15,24 +15,20 @@
       libinput.enable = true;
 
       displayManager = {
-        lightdm = {
+        gdm = {
           enable = true;
-          background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-          greeters = {
-            gtk = {
-              theme = {
-                name = "Dracula";
-                package = pkgs.dracula-theme;
-              };
-              cursorTheme = {
-                name = "Dracula-cursors";
-                package = pkgs.dracula-theme;
-                size = 16;
-              };
-            };
-          };
+          #background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
+          #greeters = {
+          #  gtk = {
+          #    cursorTheme = {
+          #      name = "Adwaita cursor";
+          #      package = pkgs.gnome3.adwaita-icon-theme;
+          #      size = 16;
+          #    };
+          #  };
+          #};
         };
-        defaultSession = "none+bspwm";            # none+bspwm -> no real display manager
+        defaultSession = "none+bspwm";
       };
       windowManager= {
         bspwm = {                                 # Window Manager
@@ -41,46 +37,22 @@
       };
 
       videoDrivers = [                            # Video Settings
-        #"amdgpu"
         "intel"
       ];
 
-      displayManager.sessionCommands = ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP1 --mode 1920x1080 --pos 0x0 --rotate normal --output HDMI3 --primary --mode 1920x1080 --pos 1920x0 --rotate normal
-      '';
-
-      #displayManager.sessionCommands = ''
-        #!/bin/sh
-
-        #SCREEN=$(${pkgs.xorg.xrandr}/bin/xrandr | grep " connected " | wc -l)
-        #if [[ $SCREEN -eq 1 ]]; then
-        #  ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-1 --primary --mode 1920x1080 --rotate normal
-        #elif [[ $SCREEN -eq 2 ]]; then
-        #  ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-1 --primary --mode 1920x1080 --rotate normal --output DisplayPort-1 --mode 1920x1080 --rotate normal --left-of HDMI-A-1
-        #elif [[ $SCREEN -eq 3 ]]; then
-        #  ${pkgs.xorg.xrandr}/bin/xrandr --output HDMI-A-1 --primary --mode 1920x1080 --rotate normal --output DisplayPort-1 --mode 1920x1080 --rotate normal --left-of HDMI-A-1 --output HDMI-A-0 --mode 1280x1024 --rotate normal --right-of HDMI-A-1
-        #fi
-
-      #'';                                         # Settings for correct display configuration; This can also be done with setupCommands when X server start for smoother transition (if setup is static)
-                                                  # Another option to research in future is arandr
       serverFlagsSection = ''
         Option "BlankTime" "0"
         Option "StandbyTime" "0"
         Option "SuspendTime" "0"
         Option "OffTime" "0"
-      '';                                         # Used so computer does not goes to sleep
+      ''; # Caffinate
 
-      resolutions = [
-        { x = 1920; y = 1080; }
-        { x = 1600; y = 900; }
-        { x = 3840; y = 2160; }
-      ];
     };
   };
 
-  programs.zsh.enable = true;                     # Weirdly needs to be added to have default user on lightdm
+  programs.zsh.enable = true;
 
-  environment.systemPackages = with pkgs; [       # Packages installed
+  environment.systemPackages = with pkgs; [
     xclip
     xorg.xev
     xorg.xkill

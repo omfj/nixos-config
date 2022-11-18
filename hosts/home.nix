@@ -19,17 +19,20 @@
 
       # Video/Audio
       feh               # Image Viewer
-      mpv               # Media Player
+      mpv               # Media player
       pavucontrol       # Audio control
-      plex-media-player # Media Player
-      vlc               # Media Player
-      stremio           # Media Streamer
+      plex-media-player # Media player
+      vlc               # Media player
+      stremio           # Media streamer
+      pamixer           # Audio control
+      spotify           # Media player
 
       # Apps
       appimage-run      # Runs AppImages on NixOS
       firefox           # Browser
-      _1password        # Password Manager
+      _1password-gui    # Password Manager
       vscode            # Code Editor
+      discord           # Social network
 
       # File Management
       okular            # PDF viewer
@@ -50,7 +53,6 @@
       alacritty        # Terminal Emulator
       dunst            # Notifications
       libnotify        # Dep for Dunst
-      neovim           # Text Editor
       rofi             # Menu
       vim              # Text Editor
 
@@ -61,7 +63,6 @@
       xorg.xrandr      # Screen settings
 
       # Xorg home-manager
-      picom            # Compositer
       sxhkd            # Shortcuts
 
       # Desktop
@@ -70,12 +71,14 @@
       blueman          # Bluetooth
       obs-studio       # Recording/Live Streaming
     ];
+
     file.".config/wall".source = ../modules/themes/wall;
-    pointerCursor = {                         # This will set cursor systemwide so applications can not choose their own
-      name = "Dracula-cursors";
-      package = pkgs.dracula-theme;
-      size = 16;
-    };
+
+    #pointerCursor = {
+    #  name = "Awaita cursor";
+    #  package = pkgs.gnome3.adwaita-icon-theme;
+    #  size = 16;
+    #};
     stateVersion = "22.05";
   };
 
@@ -94,7 +97,7 @@
       package = pkgs.papirus-icon-theme;
     };
     font = {
-      name = "JetBrains Mono Medium";         # or FiraCode Nerd Font Mono Medium
-    };                                        # Cursor is declared under home.pointerCursor
+      name = "JetBrains Mono Medium";
+    };
   };
 }

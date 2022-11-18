@@ -7,11 +7,8 @@
     xserver = {
       enable = true;
 
-      layout = "us";                              # Keyboard layout & €-sign
-      xkbOptions = "eurosign:e";
+      layout = "no";                              # Keyboard layout & €-sign
       libinput.enable = true;
-      modules = [ pkgs.xf86_input_wacom ];        # Both needed for wacom tablet usage
-      wacom.enable = true;
 
       displayManager = {                          # Display Manager
         gdm = {
@@ -29,7 +26,7 @@
     ];
   };
 
-  programs.zsh.enable = true;                     # Weirdly needs to be added to have default user on lightdm
+  programs.zsh.enable = true;
 
   hardware.pulseaudio.enable = false;
 

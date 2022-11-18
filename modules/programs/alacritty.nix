@@ -9,12 +9,12 @@
     alacritty = {
       enable = true;
       settings = {
-        font = rec {                          # Font - Laptop has size manually changed at home.nix
+        font = rec {
           normal.family = "Source Code Pro";
           bold = { style = "Bold"; };
-#         size = 8;
+          #size = 12;
         };
-        offset = {                            # Positioning
+        offset = {
           x = -1;
           y = 0;
         };
