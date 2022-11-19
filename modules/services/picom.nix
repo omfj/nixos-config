@@ -30,11 +30,11 @@
 
       # Opacity
       opacityRules = [
-      #  "100:name = 'Picture in picture'"
-      #  "100:name = 'Picture-in-Picture'"
-      #  "85:class_i ?= 'rofi'"
+        "100:fullscreen"
+        "100:name = 'Picture in picture'"
+        "100:name = 'Picture-in-Picture'"
+        "85:class_i ?= 'rofi'"
         "80:class_i *= 'Alacritty'"
-      #  "100:fullscreen"
       ]; # Find with $ xprop | grep "WM_CLASS"
 
       settings = {
@@ -42,7 +42,7 @@
         use-damage = false;
         resize-damage = 1;
         refresh-rate = 0;
-        #corner-radius = 5;                          # Corners
+        #corner-radius = 5;
         #round-borders = 5;
 
         # Animations
