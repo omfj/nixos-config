@@ -55,6 +55,7 @@
       libnotify        # Dep for Dunst
       rofi             # Menu
       vim              # Text Editor
+      betterlockscreen # Lockscreen
 
       # Xorg configuration
       xclip            # Console Clipboard
@@ -74,11 +75,6 @@
 
     file.".config/wall".source = ../modules/themes/wall;
 
-    #pointerCursor = {
-    #  name = "Awaita cursor";
-    #  package = pkgs.gnome3.adwaita-icon-theme;
-    #  size = 16;
-    #};
     stateVersion = "22.05";
   };
 
@@ -89,15 +85,17 @@
   gtk = {
     enable = true;
     theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
+      name = "Materia-dark";
+      package = pkgs.materia-theme;
     };
     iconTheme = {
       name = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
     };
-    font = {
-      name = "JetBrains Mono Medium";
+    cursorTheme = {
+      name = "Adwaita";
+      package = pkgs.gnome.adwaita-icon-theme;
+      size = 24;
     };
   };
 }

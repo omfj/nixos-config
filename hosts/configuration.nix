@@ -16,10 +16,11 @@
 
   networking.networkmanager.enable = true;
 
-  time.timeZone = "Europe/Oslo";        # Time zone and internationalisation
+  # Time zone and internationalisation
+  time.timeZone = "Europe/Oslo";
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {                 # Extra locale settings that need to be overwritten
+    extraLocaleSettings = {
       LC_TIME = "nb_NO.UTF-8";
       LC_MONETARY = "nb_NO.UTF-8";
     };
@@ -41,12 +42,14 @@
     carlito                                 # NixOS
     vegur                                   # NixOS
     source-code-pro
-    jetbrains-mono
     font-awesome                            # Icons
     corefonts                               # MS
-    (nerdfonts.override {                   # Nerdfont Icons override
+    (nerdfonts.override {                   # Only selected nerd fonts
       fonts = [
         "FiraCode"
+        "JetBrainsMono"
+        "Hack"
+        "IBMPlexMono"
       ];
     })
   ];
@@ -66,6 +69,28 @@
       usbutils
       wget
     ];
+    etc = {
+      "xdg/user-dirs.defaults" = {
+        text = ''
+          DESKTOP=Desktop
+          DOCUMENTS=Documents
+          DOWNLOAD=Downloads
+          MUSIC=Music
+          PICTURES=Pictures
+          PUBLICSHARE=Public
+          TEMPLATES=Templates
+          VIDEOS=Videos
+        '';
+      };
+
+      "xdg/mimeapps.list" = {
+        text = ''
+          [Default Applications]
+          x-scheme-handler/http=firefox.desktop
+          x-scheme-handler/https=firefox.desktop
+        '';
+      };
+    };
   };
 
   # GnuPG
@@ -76,10 +101,16 @@
   };
   services.pcscd.enable = true;
 
+  # Keychain
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
+
   services = {
+    # File management
     gvfs.enable = true;
     udisks2.enable = true;
     devmon.enable = true;
+    # Audio
     pipewire = {
       enable = true;
       alsa = {
@@ -88,6 +119,7 @@
       };
       pulse.enable = true;
     };
+    # OpenSSH
     openssh = {
       enable = true;
       allowSFTP = true;
@@ -99,7 +131,7 @@
   };
 
   nix = {
-    settings ={
+    settings = {
       auto-optimise-store = true;
     };
     gc = {                                  # Automatic garbage collection

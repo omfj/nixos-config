@@ -15,7 +15,7 @@
   };
 
   programs = {
-    alacritty.settings.font.size = 13;
+    alacritty.settings.font.size = 10;
   };
 
   services = {

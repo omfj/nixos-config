@@ -34,6 +34,11 @@
       ];
 
       extraConfig = ''
+        let mapleader = " "
+        set backspace=indent,eol,start
+        set nu rnu
+        set mouse=a
+        set so=5
         syntax enable                             " Syntax highlighting
         colorscheme srcery                        " Color scheme text
 
@@ -44,9 +49,14 @@
         highlight Comment cterm=italic gui=italic " Comments become italic
         hi Normal guibg=NONE ctermbg=NONE         " Remove background, better for personal theme
         
-        set number                                " Set numbers
-
-        nmap <F6> :NERDTreeToggle<CR>             " F6 opens NERDTree
+        " Nerdtree
+        nnoremap <leader>e :NERDTreeToggle<CR>
+        
+        " Window Navigation with Ctrl-[hjkl]
+        noremap <C-J> <C-W>j
+        noremap <C-K> <C-W>k
+        noremap <C-H> <C-W>h
+        noremap <C-L> <C-W>l
       '';
     };
   };

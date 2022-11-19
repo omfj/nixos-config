@@ -10,13 +10,9 @@
       enable = true;
       settings = {
         font = rec {
-          normal.family = "Source Code Pro";
+          normal.family = "JetBrainsMono Nerd Font";
           bold = { style = "Bold"; };
-          #size = 12;
-        };
-        offset = {
-          x = -1;
-          y = 0;
+          #size = 12; # Also defined in hosts/laptop/home.nix
         };
       };
     };

@@ -15,28 +15,28 @@
       libinput.enable = true;
 
       displayManager = {
-        gdm = {
+        lightdm = {
           enable = true;
-          #background = pkgs.nixos-artwork.wallpapers.nineish-dark-gray.gnomeFilePath;
-          #greeters = {
-          #  gtk = {
-          #    cursorTheme = {
-          #      name = "Adwaita cursor";
-          #      package = pkgs.gnome3.adwaita-icon-theme;
-          #      size = 16;
-          #    };
-          #  };
-          #};
+          greeters = {
+            gtk = {
+              enable = true;
+              cursorTheme = {
+                package = pkgs.gnome.adwaita-icon-theme;
+                name = "Adwaita";
+                size = 24;
+              };
+            };
+          };
         };
         defaultSession = "none+bspwm";
       };
       windowManager= {
-        bspwm = {                                 # Window Manager
+        bspwm = {
           enable = true;
         };
       };
 
-      videoDrivers = [                            # Video Settings
+      videoDrivers = [
         "intel"
       ];
 
