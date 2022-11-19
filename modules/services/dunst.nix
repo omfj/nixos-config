@@ -16,7 +16,7 @@ in
       package = pkgs.papirus-icon-theme;
       size = "16x16";
     };
-    settings = with colors.scheme.doom; {               # Settings
+    settings = {               # Settings
       global = {
         monitor = 0;
         width = 300;
@@ -29,7 +29,6 @@ in
         padding = 15;
         horizontal_padding = 15;
         frame_width = 3;
-        frame_color = "#${bg}";
         separator_color = "frame";
         font = "FiraCode Nerd Font 13";
         line_height = 4;
