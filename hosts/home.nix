@@ -16,6 +16,7 @@
       btop              # Resource Manager
       pfetch            # Minimal fetch
       ranger            # File Manager
+      ttyper            # Typing game
 
       # Video/Audio
       feh               # Image Viewer
@@ -39,7 +40,8 @@
       gnome.file-roller # Archive Manager
       pcmanfm           # File Manager
       rsync             # Syncer $ rsync -r dir1/ dir2/
-      unzip             # Zip files
+      zip               # Zip files
+      unzip
       unrar             # Rar files
 
       # General configuration
@@ -56,6 +58,7 @@
       rofi             # Menu
       vim              # Text Editor
       betterlockscreen # Lockscreen
+      mullvad-vpn      # VPN
 
       # Xorg configuration
       xclip            # Console Clipboard
@@ -71,6 +74,28 @@
       simple-scan      # Scanning
       blueman          # Bluetooth
       obs-studio       # Recording/Live Streaming
+
+      # Rust
+      rustc            # Rust compiler
+      cargo            # Rust package manager
+
+      # Node/webdev
+      yarn             # npm alernative
+      nodejs           # node js
+      nodePackages.npm # Node package manager
+
+      # Haskell
+      ghc              # Haskell compiler
+      stack            # Package manager ++(?)
+      cabal-install    # --||--
+
+      # Java
+      jdk              # Java devkit
+
+      # TODO: Python 
+
+      # Tex
+      texlive.combined.scheme-medium # Latex baby
     ];
 
     file.".config/wall".source = ../modules/themes/wall;

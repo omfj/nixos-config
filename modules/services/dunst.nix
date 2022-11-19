@@ -19,20 +19,19 @@ in
     settings = with colors.scheme.doom; {               # Settings
       global = {
         monitor = 0;
-        # geometry [{width}x{height}][+/-{x}+/-{y}]
-        # geometry = "600x50-50+65";
         width = 300;
-        height = 200;
+        height = 250;
         origin = "top-right";
-        offset = "50x50";
+        offset = "35x75";
+        scale = 0;
+        notification_lmit = 5;
         shrink = "yes";
-        transparency = 10;
-        padding = 16;
-        horizontal_padding = 16;
+        padding = 15;
+        horizontal_padding = 15;
         frame_width = 3;
         frame_color = "#${bg}";
         separator_color = "frame";
-        font = "FiraCode Nerd Font 10";
+        font = "FiraCode Nerd Font 13";
         line_height = 4;
         idle_threshold = 120;
         markup = "full";
@@ -45,23 +44,23 @@ in
         show_indicators = "yes";
         sort = true;
         stack_duplicates = true;
-        # startup_notification = false;
         hide_duplicate_count = true;
+        frame_color = "#817F7F";
       };
-      urgency_low = {                                   # Colors
-        background = "#${bg}";
-        foreground = "#${text}";
-        timeout = 4;
+      urgency_low = {
+        background = "#1A1A1A";
+        foreground = "#F9F9F9";
+        timeout = 5;
       };
       urgency_normal = {
-        background = "#${bg}";
-        foreground = "#${text}";
+        background = "#1A1A1A";
+        foreground = "#F9F9F9";
         timeout = 4;
       };
       urgency_critical = {
-        background = "#${bg}";
-        foreground = "#${text}";
-        frame_color = "#${red}";
+        background = "#900000";
+        foreground = "#FFFFFF";
+        frame_color = "#FF0000";
         timeout = 10;
       };
     };

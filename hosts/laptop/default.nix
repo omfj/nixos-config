@@ -1,8 +1,8 @@
 { config, pkgs, user, ... }:
 
 {
-  imports =                                 # For now, if applying to other system, swap files
-    [(import ./hardware-configuration.nix)] ++            # Current system hardware config @ /etc/nixos/hardware-configuration.nix
+  imports =
+    [(import ./hardware-configuration.nix)] ++
     [(import ../../modules/desktop/bspwm/default.nix)] ++      # Window Manager
     #[(import ../../modules/desktop/virtualisation/docker.nix)] ++  # Docker
     (import ../../modules/hardware);                      # Hardware devices
@@ -23,11 +23,11 @@
         useOSProber = true;                 # Find all boot options
         configurationLimit = 2;
       };
-      timeout = 1;                          # Grub auto select time
+      timeout = 1;
     };
   };
 
-  networking.hostName = "nixomfj";            # Hostname
+  networking.hostName = "onix";               # Hostname
 
   hardware.sane = {                           # Used for scanning with Xsane
     enable = true;
@@ -64,21 +64,15 @@
     };
     xserver = {
       layout = "no";
-      libinput = {                          # Trackpad support & gestures
+      libinput = {
         touchpad = {
           tapping = true;
           scrollMethod = "twofinger";
-          naturalScrolling = true;            # The correct way of scrolling
-          accelProfile = "adaptive";          # Speed settings
-          #accelSpeed = "-0.5";
+          naturalScrolling = true;
+          accelProfile = "adaptive";
           disableWhileTyping = true;
         };
       };
-      resolutions = [
-         { x = 1600; y = 920; }
-         { x = 1280; y = 720; }
-         { x = 1920; y = 1080; }
-      ];
     };
   };
 
